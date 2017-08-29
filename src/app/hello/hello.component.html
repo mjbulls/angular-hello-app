@@ -1,0 +1,33 @@
+<div class="container">
+    <h1> {{ title }} </h1>
+    <div>
+        <form class="well" (submit)="doSubmit($event)">
+            <div class="form-group">
+              <input type="text"
+                [(ngModel)]="message.title"
+                [ngModelOptions]="{standalone: true}"
+                class="form-control" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <textarea
+                [(ngModel)]="message.content"
+                [ngModelOptions]="{standalone: true}"
+                class="form-control" rows="3"  placeholder="Content"></textarea>
+            </div>
+            <div class="form-group">
+                <button [disabled]="!message.title || !message.content" class="btn btn-primary right">등록</button>
+            <button type="button" [disabled]="!(message.title && message.content)" (click)="reset($event)" class="btn btn-danger right">취소</button>
+          </div>
+        </form>
+    </div>
+    <br />
+    <div class="row" *ngFor="let message of messages; let i = index">
+        <div class="card card-block">
+            <p class="card-text">{{i+1}}</p>
+            <h4 class="card-title">{{ message.title }}</h4>
+          <p class="card-text">{{message.content}}</p>
+        </div>
+    </div>
+
+</div>
+
